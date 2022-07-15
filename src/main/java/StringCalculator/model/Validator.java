@@ -1,10 +1,13 @@
 package StringCalculator.model;
 
+import java.util.Arrays;
+
 public class Validator {
-    public static void validateInputLength(String[] userInput) {
-        for (String Arr : userInput) {
-            if (!Arr.matches(("[1-9]+"))) {
-                System.out.println("구분자 사이에는 숫자만 넣어주세요.");
+    public void validateIsInputContainsOnlyPositiveInteger(String[] userInput) {
+        Calculator calculator = new Calculator();
+        for (String arr: userInput) {
+            if (!arr.matches("[+]?\\d")) {
+                throw new RuntimeException("구분자 사이에는 양의 정수만 입력해주세요.");
             }
         }
     }

@@ -3,11 +3,9 @@ package StringCalculator.model;
 import java.util.Arrays;
 
 public class Calculator {
-    public int doBasicAddition(String userInput) {
+    public String[] returnBasicSeparatedArray(String userInput) {
         String[] splitedUserInput = userInput.split(",|:");
-        int[] intUserInputArray = Arrays.stream(splitedUserInput).mapToInt(Integer::parseInt).toArray();
-        int sumArray = Arrays.stream(intUserInputArray).sum();
-        return sumArray;
+        return splitedUserInput;
     }
 
     public int getZeroWhenInputIsEmpty() {
@@ -19,12 +17,21 @@ public class Calculator {
         return convertedIntNum;
     }
 
-    public int doCustomSeparatorAddition(String userInput) {
+    private int[] transformArrayStringToInt(String[] inputArray) {
+        int[] intArray = Arrays.stream(inputArray).mapToInt(Integer::parseInt).toArray();
+        return intArray;
+    }
+    public String[] returnCustomSeparatedArray(String userInput) {
         String[] splitedUserInputArray = userInput.split("\n");
         String customSeparator = String.valueOf(splitedUserInputArray[0].charAt(2));
         String[] splitedUserInputArrayForAddition = splitedUserInputArray[1].split(customSeparator);
-        int[] intUserInputArray = Arrays.stream(splitedUserInputArrayForAddition).mapToInt(Integer::parseInt).toArray();
-        int sumArray = Arrays.stream(intUserInputArray).sum();
-        return sumArray;
+        return splitedUserInputArrayForAddition;
     }
+
+    public int doSumArray(String[] inputArray) {
+        int[] intArray = transformArrayStringToInt(inputArray);
+        int summedResult = Arrays.stream(intArray).sum();
+        return summedResult;
+    }
+
 }

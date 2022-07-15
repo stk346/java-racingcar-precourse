@@ -3,6 +3,8 @@ package StringCalculator.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class StringAdditionCalculatorTest {
@@ -13,10 +15,10 @@ public class StringAdditionCalculatorTest {
         String colonUserInput = "1:2:3";
         Calculator calculator = new Calculator();
 
-        int commaResult = calculator.doBasicAddition(commaUserInput);
-        int colonResult = calculator.doBasicAddition(colonUserInput);
-        assertThat(commaResult).isEqualTo(6);
-        assertThat(colonResult).isEqualTo(6);
+        String[] commaResultArray = calculator.returnBasicSeparatedArray(commaUserInput);
+        String[] colonResultArray = calculator.returnBasicSeparatedArray(colonUserInput);
+        assertThat(calculator.doSumArray(commaResultArray)).isEqualTo(6);
+        assertThat(calculator.doSumArray(colonResultArray)).isEqualTo(6);
     }
 
     @DisplayName("숫자 하나가 문자열로 들어왔을 때 해당 숫자를 반환하는 기능 테스트")
@@ -34,7 +36,18 @@ public class StringAdditionCalculatorTest {
     public void customAdditionTest() {
         String userInput = "//;\n1;2;3";
         Calculator calculator = new Calculator();
-        int summedUserInput = calculator.doCustomSeparatorAddition(userInput);
-        assertThat(summedUserInput).isEqualTo(6);
+        String[] intUserInputArray = calculator.returnCustomSeparatedArray(userInput);
+        int sumArray = calculator.doSumArray(intUserInputArray);
+        assertThat(sumArray).isEqualTo(6);
+    }
+
+    @DisplayName("숫자 이외의 값이나 음수가 주어졌을 때 RuntimeException을 throw하는 기능 테스트")
+    @Test
+    public void throwRuntimeExceptionTest() {
+        Calculator calculator = new Calculator();
+        Validator validator = new Validator();
+        String userInput = "1,2,3";
+        String[] stringArray = calculator.returnBasicSeparatedArray(userInput);
+        validator.validateIsInputContainsOnlyPositiveInteger(stringArray);
     }
 }
