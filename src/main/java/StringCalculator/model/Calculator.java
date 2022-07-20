@@ -1,10 +1,15 @@
 package StringCalculator.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Calculator {
-    public String[] returnBasicSeparatedArray(String userInput) {
-        String[] splitedUserInput = userInput.split(",|:");
+    public List<String> returnBasicSeparatedArray(String userInput) {
+        String saparator = String.valueOf(userInput.charAt(1));
+        List<String> splitedUserInput = new ArrayList<>(Arrays.asList(userInput.split(saparator)));
         return splitedUserInput;
     }
 
@@ -17,20 +22,27 @@ public class Calculator {
         return convertedIntNum;
     }
 
-    private int[] transformArrayStringToInt(String[] inputArray) {
-        int[] intArray = Arrays.stream(inputArray).mapToInt(Integer::parseInt).toArray();
+    private List<Integer> transformArrayStringToInt(List<String> inputArray) {
+        List<Integer> intArray = new ArrayList<>();
+        for (String s: inputArray) {
+            intArray.add(Integer.valueOf(s));
+        }
         return intArray;
     }
-    public String[] returnCustomSeparatedArray(String userInput) {
-        String[] splitedUserInputArray = userInput.split("\n");
-        String customSeparator = String.valueOf(splitedUserInputArray[0].charAt(2));
-        String[] splitedUserInputArrayForAddition = splitedUserInputArray[1].split(customSeparator);
-        return splitedUserInputArrayForAddition;
+
+    public List<String> returnCustomSeparatedArray(String userInput) {
+        String customSeparator = String.valueOf(userInput.charAt(2));
+        List<String> splitedUserInputArray = new ArrayList<> (Arrays.asList(userInput.split(customSeparator)));
+        List<String> trimmedInputArray = splitedUserInputArray.subList(1, splitedUserInputArray.size());
+        List<String> strippedUserInputArray = trimmedInputArray.stream()
+                .map(s -> s.trim())
+                .collect(Collectors.toList());
+        return strippedUserInputArray;
     }
 
-    public int doSumArray(String[] inputArray) {
-        int[] intArray = transformArrayStringToInt(inputArray);
-        int summedResult = Arrays.stream(intArray).sum();
+    public int doSumArray(List<String> inputArray) {
+        List<Integer> intArray = transformArrayStringToInt(inputArray);
+        int summedResult = intArray.stream().mapToInt(Integer::intValue).sum();
         return summedResult;
     }
 
