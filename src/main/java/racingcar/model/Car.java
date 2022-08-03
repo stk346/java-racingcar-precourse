@@ -8,6 +8,10 @@ public class Car {
         this.position = new Position();
         this.name = new Name(name);
     }
+    public Car (String name, int position) {
+        this.name = new Name(name);
+        this.position = new Position(position);
+    }
 
     public void move(int randNum) {
         if (randNum >= 4) {
@@ -15,7 +19,11 @@ public class Car {
         }
     }
 
-    public Position getPosition() {
-        return this.position;
+    public int getPosition() {
+        return this.position.getPosition();
+    }
+
+    public String getName() {
+        return this.name.getName();
     }
 }

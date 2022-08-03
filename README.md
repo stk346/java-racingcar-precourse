@@ -21,6 +21,6 @@
 - [x] Car 클래스 만들고 기능 구현 (move 등..)
 - [x] Name 클래스 만들고 기능 구현 (1자 이상, 5자 이하 등..)
 - [x] Position 클래스 만들고 기능 구현
-- [ ] 일급 컬렉션 만들기 List<Car>
-- [ ] 일급 컬렉션에서 자체적으로 MaxPosition, winner 구하는 기능 등 구현
+- [x] 일급 컬렉션 만들기 List<Car>
+- [x] 일급 컬렉션에서 자체적으로 MaxPosition, winner 구하는 기능 등 구현
 - [ ] View 구현 (input, 실행결과, winner 등..)

@@ -10,4 +10,8 @@ public class Name {
             throw new IllegalArgumentException(NAME_LENGTH_MESSAGE);
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
