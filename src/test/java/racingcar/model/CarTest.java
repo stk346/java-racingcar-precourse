@@ -47,6 +47,6 @@ public class CarTest {
         Car crong = new Car("crong", 2);
         Car honux = new Car("honux", 1);
         Cars cars = new Cars(Arrays.asList(pobi, crong, honux));
-        System.out.println(cars.getWinners());
+        assertThat(cars.getWinners()).isEqualTo("pobi, crong");
     }
 }

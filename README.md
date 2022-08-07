@@ -24,3 +24,6 @@
 - [x] 일급 컬렉션 만들기 List<Car>
 - [x] 일급 컬렉션에서 자체적으로 MaxPosition, winner 구하는 기능 등 구현
 - [ ] View 구현 (input, 실행결과, winner 등..)
+- [ ] GameController에서 count 받아서 게임 실행하는 기능 구현 (View까지 보여줘야함)
+- [ ] Validator 구현
+- [ ] Application에서 validation까지 구현한 뒤 잘 동작하는지 확인
