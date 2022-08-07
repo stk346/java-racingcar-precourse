@@ -21,13 +21,13 @@ public class Cars {
     }
 
     private List<Car> getWinners(int maxPosition) {
-        List<Car> cars = new ArrayList<>();
-        for (Car car : this.cars) {
+        List<Car> winners = new ArrayList<>();
+        for (Car car : cars) {
             if (car.getPosition() == maxPosition) {
-                cars.add(car);
+                winners.add(car);
             }
         }
-        return cars;
+        return winners;
     }
 
     private String getWinnerName(List<Car> winners) {
@@ -44,5 +44,9 @@ public class Cars {
         List<Car> winners = getWinners(maxPosition);
         String winnerName = getWinnerName(winners);
         return winnerName;
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 }
